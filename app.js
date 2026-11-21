@@ -98,3 +98,70 @@ form.addEventListener('submit', async event => {
 });
 document.getElementById('phone').addEventListener('input', event => event.target.setCustomValidity(''));
 document.getElementById('year').textContent = new Date().getFullYear();
+
+//добавил 
+// ==========================================
+// АНИМАЦИИ: появление при скролле, счётчики и прогресс-бары
+// ==========================================
+
+// 1. Плавное появление элементов (Reveal)
+const revealElements = document.querySelectorAll('.reveal');
+const revealObserver = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      entry.target.classList.add('visible');
+      revealObserver.unobserve(entry.target); // Анимируем только один раз
+    }
+  });
+}, { threshold: 0.15 });
+
+revealElements.forEach(el => revealObserver.observe(el));
+
+// 2. Анимация счётчиков (Counter)
+const counters = document.querySelectorAll('.counter');
+const counterObserver = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      const counter = entry.target;
+      const target = +counter.getAttribute('data-count');
+      const duration = 2000; // Длительность анимации: 2 секунды
+      const frameDuration = 1000 / 60; // 60 FPS
+      const totalFrames = Math.round(duration / frameDuration);
+      const increment = target / totalFrames;
+      let current = 0;
+      
+      const updateCounter = () => {
+        current += increment;
+        if (current < target) {
+          // Форматируем число с пробелами для тысяч (например, "8 500")
+          counter.textContent = Math.ceil(current).toLocaleString('ru-RU');
+          requestAnimationFrame(updateCounter);
+        } else {
+          counter.textContent = target.toLocaleString('ru-RU');
+        }
+      };
+      
+      updateCounter();
+      counterObserver.unobserve(counter);
+    }
+  });
+}, { threshold: 0.5 });
+
+counters.forEach(counter => counterObserver.observe(counter));
+
+// 3. Анимация прогресс-баров в разделе "Качество"
+const bars = document.querySelectorAll('.bar i');
+const barObserver = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      // Запускаем плавное заполнение до значения из --value
+      entry.target.style.width = entry.target.style.getPropertyValue('--value');
+      barObserver.unobserve(entry.target);
+    }
+  });
+}, { threshold: 0.5 });
+
+bars.forEach(bar => {
+  bar.style.width = '0'; // Гарантируем начальное состояние перед анимацией
+  barObserver.observe(bar);
+});
