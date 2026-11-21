@@ -450,3 +450,24 @@ textarea { min-height: 112px; }
  .btn-primary:hover,.btn-dark:hover,.pcard:hover{transform:none}
 }
 
+/* ---------- АНИМАЦИЯ ИСКР (ПЕПЕЛ) ---------- */
+#embers {
+  position: absolute;
+  top: 0; left: 0; right: 0; bottom: 0;
+  pointer-events: none;
+  z-index: 1;
+  overflow: hidden;
+}
+.ember {
+  position: absolute;
+  bottom: -10px;
+  border-radius: 50%;
+  background: radial-gradient(circle, #ffd27a, #ff7a2a 60%, transparent);
+  opacity: 0;
+  animation: rise linear infinite;
+}
+@keyframes rise {
+  0% { transform: translateY(0) scale(1); opacity: 0; }
+  12% { opacity: 0.9; }
+  100% { transform: translateY(-105vh) translateX(40px) scale(0.2); opacity: 0; }
+}
