@@ -165,3 +165,22 @@ bars.forEach(bar => {
   bar.style.width = '0'; // Гарантируем начальное состояние перед анимацией
   barObserver.observe(bar);
 });
+
+
+// ---------- Анимация искр (пепел) ----------
+const embersContainer = document.getElementById('embers');
+if (embersContainer) {
+  for (let i = 0; i < 25; i++) {
+    const ember = document.createElement('span');
+    ember.className = 'ember';
+    const size = 3 + Math.random() * 5; // Размер частицы от 3 до 8px
+    ember.style.cssText = `
+      left: ${Math.random() * 100}%;
+      width: ${size}px;
+      height: ${size}px;
+      animation-duration: ${6 + Math.random() * 8}s;
+      animation-delay: ${Math.random() * 9}s;
+    `;
+    embersContainer.appendChild(ember);
+  }
+}
