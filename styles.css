@@ -399,17 +399,17 @@ textarea { min-height: 112px; }
 :focus-visible{outline:3px solid #76b333;outline-offset:5px}
 .skip-link{position:fixed;top:12px;left:16px;z-index:120;background:var(--paper);padding:12px 20px;transform:translateY(-160%)}
 .skip-link:focus{transform:none}
-.reveal{opacity:1;transform:none}
+/*.reveal{opacity:1;transform:none}*/
 .faq-a{max-height:none;overflow:visible}
 .faq-a[hidden]{display:none}
 .stat b .counter{font:inherit;color:inherit}
-.bar i{width:var(--value);transition:none}
+/*.bar i{width:var(--value);transition:none}*/
 .form-error{color:#a32c20;font-size:14px;margin:14px 0}
 .btn:disabled{opacity:.65;cursor:wait;transform:none}
 .form-success:focus{outline:none}
 .consent{font-weight:500;text-transform:none;letter-spacing:0;cursor:pointer}
 .hero-kicker{letter-spacing:.14em}
-.hero-visual .bag-svg{animation:none}
+/*.hero-visual .bag-svg{animation:none}*/
 .pcard{box-shadow:0 5px 20px rgba(16,18,16,.06)}
 .pcard:hover{transform:translateY(-4px)}
 @media(max-width:860px){
